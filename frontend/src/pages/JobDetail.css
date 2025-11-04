@@ -1,0 +1,138 @@
+.job-detail-page {
+  min-height: calc(100vh - 70px);
+  padding: 2rem 0;
+}
+
+.job-detail-content {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 2rem;
+}
+
+.job-main {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.job-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 2rem;
+  gap: 1rem;
+}
+
+.job-detail-title {
+  font-size: 2rem;
+  color: #333;
+  margin: 0;
+}
+
+.job-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  padding: 1.5rem;
+  background: #f5f7fa;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.meta-label {
+  font-size: 0.9rem;
+  color: #666;
+  font-weight: 600;
+}
+
+.meta-value {
+  font-size: 1rem;
+  color: #333;
+}
+
+.job-section {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #eee;
+}
+
+.job-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.job-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.job-text {
+  line-height: 1.8;
+  color: #666;
+  white-space: pre-wrap;
+}
+
+.job-sidebar {
+  position: sticky;
+  top: 90px;
+  height: fit-content;
+}
+
+.apply-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.apply-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.apply-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-hint {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 0.85rem;
+  color: #999;
+}
+
+.info-text {
+  text-align: center;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 968px) {
+  .job-detail-content {
+    grid-template-columns: 1fr;
+  }
+
+  .job-sidebar {
+    position: static;
+  }
+
+  .job-detail-header {
+    flex-direction: column;
+  }
+
+  .job-meta {
+    grid-template-columns: 1fr;
+  }
+}
