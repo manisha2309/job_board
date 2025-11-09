@@ -4,13 +4,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Dashboard.css';
 
+
 const EmployerDashboard = () => {
   const [jobs, setJobs] = useState([]);
   const [selectedJob, setSelectedJob] = useState(null);
   const [applications, setApplications] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const navigate = useNavigate();
+
 
   useEffect(() => {
     fetchMyJobs();

@@ -18,9 +18,10 @@ const JobDetail = () => {
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
 
-  useEffect(() => {
-    fetchJobDetail();
-  }, [id]);
+useEffect(() => {
+  fetchJobDetail();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, [id]);
 
   const fetchJobDetail = async () => {
     try {
