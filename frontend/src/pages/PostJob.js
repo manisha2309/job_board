@@ -1,3 +1,4 @@
+import config from '../config';
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
@@ -37,7 +38,7 @@ const PostJob = () => {
     setSuccess('');
 
     try {
-      await axios.post('/api/jobs', formData);
+      await axios.post(`${config.API_URL}/api/jobs`, formData);
       setSuccess('Job posted successfully!');
       setTimeout(() => {
         navigate('/employer-dashboard');

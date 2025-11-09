@@ -1,3 +1,4 @@
+import config from '../config';
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -17,7 +18,7 @@ const EmployerDashboard = () => {
 
   const fetchMyJobs = async () => {
     try {
-      const response = await axios.get('/api/jobs/employer/my-jobs');
+      const response = await axios.get(`${config.API_URL}/api/jobs/employer/my-jobs`);
       setJobs(response.data);
     } catch (err) {
       setError('Failed to fetch jobs');
@@ -28,7 +29,7 @@ const EmployerDashboard = () => {
 
   const fetchApplications = async (jobId) => {
     try {
-      const response = await axios.get(`/api/applications/job/${jobId}`);
+      const response = await axios.get(`${config.API_URL}/api/applications/job/${jobId}`);
       setApplications(response.data);
       setSelectedJob(jobId);
     } catch (err) {
@@ -38,7 +39,7 @@ const EmployerDashboard = () => {
 
   const updateApplicationStatus = async (applicationId, status) => {
     try {
-      await axios.put(`/api/applications/${applicationId}/status`, { status });
+      await axios.put(`${config.API_URL}/api/applications/${applicationId}/status`, { status });
       fetchApplications(selectedJob);
     } catch (err) {
       setError('Failed to update application status');
@@ -49,7 +50,7 @@ const EmployerDashboard = () => {
     if (!window.confirm('Are you sure you want to delete this job?')) return;
 
     try {
-      await axios.delete(`/api/jobs/${jobId}`);
+      await axios.delete(`${config.API_URL}/api/jobs/${jobId}`);
       fetchMyJobs();
       if (selectedJob === jobId) {
         setSelectedJob(null);
@@ -63,7 +64,7 @@ const EmployerDashboard = () => {
   const toggleJobStatus = async (jobId, currentStatus) => {
     const newStatus = currentStatus === 'active' ? 'closed' : 'active';
     try {
-      await axios.put(`/api/jobs/${jobId}`, { status: newStatus });
+      await axios.put(`${config.API_URL}/api/jobs/${jobId}`, { status: newStatus });
       fetchMyJobs();
     } catch (err) {
       setError('Failed to update job status');

@@ -1,7 +1,9 @@
+
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import axios from 'axios';
+import config from '../config';
 import './Home.css';
 
 const Home = () => {
@@ -15,7 +17,7 @@ const Home = () => {
 
   const fetchFeaturedJobs = async () => {
     try {
-      const response = await axios.get('/api/jobs');
+      const response = await axios.get(`${config.API_URL}/api/jobs`);
       setFeaturedJobs(response.data.slice(0, 6));
     } catch (error) {
       console.error('Error fetching jobs:', error);

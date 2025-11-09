@@ -1,3 +1,4 @@
+import config from '../config';
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
@@ -23,7 +24,7 @@ const JobDetail = () => {
 
   const fetchJobDetail = async () => {
     try {
-      const response = await axios.get(`/api/jobs/${id}`);
+      const response = await axios.get(`${config.API_URL}/api/jobs/${id}`);
       setJob(response.data);
     } catch (error) {
       console.error('Error fetching job:', error);
@@ -61,7 +62,7 @@ const JobDetail = () => {
     formData.append('resume', resume);
 
     try {
-      await axios.post('/api/applications', formData, {
+      await axios.post(`${config.API_URL}/api/applications`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

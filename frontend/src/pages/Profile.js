@@ -1,3 +1,4 @@
+import config from '../config';
 import React, { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import axios from 'axios';
@@ -53,7 +54,7 @@ const Profile = () => {
         skills: formData.skills.split(',').map(skill => skill.trim()).filter(skill => skill)
       };
 
-      const response = await axios.put('/api/auth/profile', updateData);
+     const response = await axios.put(`${config.API_URL}/api/auth/profile`, updateData);
       updateUser(response.data);
       setSuccess('Profile updated successfully!');
     } catch (err) {

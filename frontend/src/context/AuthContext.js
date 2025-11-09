@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
+import config from '../config';
 
 export const AuthContext = createContext();
 
@@ -19,7 +20,7 @@ export const AuthProvider = ({ children }) => {
 
   const fetchUser = async () => {
     try {
-      const response = await axios.get('/api/auth/me');
+      const response = await axios.get(`${config.API_URL}/api/auth/me`);
       setUser(response.data);
     } catch (error) {
       console.error('Error fetching user:', error);
@@ -30,7 +31,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const login = async (email, password) => {
-    const response = await axios.post('/api/auth/login', { email, password });
+    const response = await axios.post(`${config.API_URL}/api/auth/login`, { email, password });
     const { token, ...userData } = response.data;
     localStorage.setItem('token', token);
     setToken(token);
@@ -40,7 +41,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const register = async (name, email, password, role) => {
-    const response = await axios.post('/api/auth/register', { name, email, password, role });
+    const response = await axios.post(`${config.API_URL}/api/auth/register`, { name, email, password, role });
     const { token, ...userData } = response.data;
     localStorage.setItem('token', token);
     setToken(token);

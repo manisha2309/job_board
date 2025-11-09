@@ -1,3 +1,4 @@
+import config from '../config';
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -14,7 +15,7 @@ const CandidateDashboard = () => {
 
   const fetchMyApplications = async () => {
     try {
-      const response = await axios.get('/api/applications/my-applications');
+     const response = await axios.get(`${config.API_URL}/api/applications/my-applications`);
       setApplications(response.data);
     } catch (err) {
       setError('Failed to fetch applications');
