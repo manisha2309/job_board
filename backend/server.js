@@ -10,12 +10,21 @@ const app = express();
 
 connectDB();
 
+// app.use(cors({
+//   origin: [
+//     'http://localhost:3000',
+//     'https://job-board-frontend.netlify.app/',
+//   ],
+//   credentials: true
+// }));
 app.use(cors({
   origin: [
     'http://localhost:3000',
-    'https://job-board-frontend.netlify.app/',
+    'https://job-board-frontend.netlify.app'
   ],
-  credentials: true
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
