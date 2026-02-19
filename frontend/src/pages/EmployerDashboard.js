@@ -203,7 +203,8 @@ const EmployerDashboard = () => {
                       
                       {app.resume && (
                         <a 
-                          href={`http://localhost:5000/uploads/${app.resume}`}
+                          // href={`http://localhost:5000/uploads/${app.resume}`}
+                          href={`${process.env.REACT_APP_API_URL.replace('/api','')}/uploads/${app.resume}`}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="btn btn-sm btn-secondary"
