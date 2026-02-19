@@ -10,13 +10,6 @@ const app = express();
 
 connectDB();
 
-// app.use(cors({
-//   origin: [
-//     'http://localhost:3000',
-//     'https://job-board-frontend.netlify.app/',
-//   ],
-//   credentials: true
-// }));
 app.use(cors({
   origin: [
     'http://localhost:3000',
