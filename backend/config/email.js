@@ -5,21 +5,39 @@
 const nodemailer = require('nodemailer');
 
 let transporter;
-
 const createTransporter = () => {
   if (transporter) return transporter;
 
   transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: 'smtp.gmail.com',
+    port: 587,
+    secure: false,
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS
+    },
+    tls: {
+      rejectUnauthorized: false
     }
   });
 
   console.log('📧 Email service ready (Production Mode)');
   return transporter;
 };
+// const createTransporter = () => {
+//   if (transporter) return transporter;
+
+//   transporter = nodemailer.createTransport({
+//     service: 'gmail',
+//     auth: {
+//       user: process.env.EMAIL_USER,
+//       pass: process.env.EMAIL_PASS
+//     }
+//   });
+
+//   console.log('📧 Email service ready (Production Mode)');
+//   return transporter;
+// };
   
 const sendApplicationConfirmation = async (candidateEmail, jobTitle, companyName) => {
   try {
