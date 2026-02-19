@@ -1,29 +1,26 @@
+//const nodemailer = require('nodemailer');
+
+
+
 const nodemailer = require('nodemailer');
 
-let transporter = null;
+let transporter;
 
-const createTransporter = async () => {
+const createTransporter = () => {
   if (transporter) return transporter;
-  
-  // Create a test account automatically
-  const testAccount = await nodemailer.createTestAccount();
-  
+
   transporter = nodemailer.createTransport({
-    host: 'smtp.ethereal.email',
-    port: 587,
-    secure: false,
+    service: 'gmail',
     auth: {
-      user: testAccount.user,
-      pass: testAccount.pass
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS
     }
   });
-  
-  console.log('📧 Email service ready (Test Mode)');
-  console.log('📧 Emails will be logged to console with preview links');
-  
+
+  console.log('📧 Email service ready (Production Mode)');
   return transporter;
 };
-
+  
 const sendApplicationConfirmation = async (candidateEmail, jobTitle, companyName) => {
   try {
     const emailTransporter = await createTransporter();
