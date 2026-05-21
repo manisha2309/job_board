@@ -27,6 +27,21 @@ const applicationSchema = new mongoose.Schema({
   appliedAt: {
     type: Date,
     default: Date.now
+  },
+
+  // Groq AI Analysis
+  aiAnalysis: {
+    matchScore:      { type: Number },
+    summary:         { type: String },
+    strengths:       [{ type: String }],
+    gaps:            [{ type: String }],
+    keywordsMatched: [{ type: String }],
+    keywordsMissing: [{ type: String }],
+    recommendation:  { type: String },
+    improvementTips: [{ type: String }]
+  },
+  aiAnalyzedAt: {
+    type: Date
   }
 });
 

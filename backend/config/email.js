@@ -1,7 +1,3 @@
-//const nodemailer = require('nodemailer');
-
-
-
 const nodemailer = require('nodemailer');
 
 let transporter;
@@ -24,21 +20,7 @@ const createTransporter = () => {
   console.log('📧 Email service ready (Production Mode)');
   return transporter;
 };
-// const createTransporter = () => {
-//   if (transporter) return transporter;
 
-//   transporter = nodemailer.createTransport({
-//     service: 'gmail',
-//     auth: {
-//       user: process.env.EMAIL_USER,
-//       pass: process.env.EMAIL_PASS
-//     }
-//   });
-
-//   console.log('📧 Email service ready (Production Mode)');
-//   return transporter;
-// };
-  
 const sendApplicationConfirmation = async (candidateEmail, jobTitle, companyName) => {
   try {
     const emailTransporter = await createTransporter();
@@ -65,7 +47,6 @@ const sendApplicationConfirmation = async (candidateEmail, jobTitle, companyName
     const info = await emailTransporter.sendMail(mailOptions);
     console.log('✅ Confirmation email sent to:', candidateEmail);
     console.log('📧 Preview URL:', nodemailer.getTestMessageUrl(info));
-    console.log('👆 Click the link above to see the email in your browser!\n');
   } catch (error) {
     console.error('❌ Error sending email:', error.message);
   }
@@ -97,7 +78,6 @@ const sendApplicationNotification = async (employerEmail, candidateName, jobTitl
     const info = await emailTransporter.sendMail(mailOptions);
     console.log('✅ Notification email sent to:', employerEmail);
     console.log('📧 Preview URL:', nodemailer.getTestMessageUrl(info));
-    console.log('👆 Click the link above to see the email in your browser!\n');
   } catch (error) {
     console.error('❌ Error sending email:', error.message);
   }
@@ -145,14 +125,49 @@ const sendStatusUpdate = async (candidateEmail, jobTitle, status) => {
     const info = await emailTransporter.sendMail(mailOptions);
     console.log('✅ Status update email sent to:', candidateEmail);
     console.log('📧 Preview URL:', nodemailer.getTestMessageUrl(info));
-    console.log('👆 Click the link above to see the email in your browser!\n');
   } catch (error) {
     console.error('❌ Error sending email:', error.message);
+  }
+};
+
+// NEW: Password reset email
+const sendPasswordResetEmail = async (toEmail, userName, resetURL) => {
+  try {
+    const emailTransporter = await createTransporter();
+
+    const mailOptions = {
+      from: '"Job Board" <noreply@jobboard.com>',
+      to: toEmail,
+      subject: '🔐 Reset Your Password',
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px;">
+          <h2 style="color: #667eea; text-align: center;">🔐 Password Reset Request</h2>
+          <p style="font-size: 16px;">Hi <strong>${userName}</strong>,</p>
+          <p style="font-size: 16px;">We received a request to reset your password. Click the button below to set a new one:</p>
+          <div style="text-align: center; margin: 30px 0;">
+            <a href="${resetURL}" style="background-color: #667eea; color: white; padding: 14px 30px; border-radius: 8px; text-decoration: none; font-size: 16px; font-weight: bold;">
+              Reset My Password
+            </a>
+          </div>
+          <p style="font-size: 14px; color: #888;">This link expires in <strong>15 minutes</strong>. If you did not request this, you can safely ignore this email — your password will not change.</p>
+          <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;" />
+          <p style="font-size: 12px; color: #aaa; text-align: center;">Job Board · Secure Password Reset</p>
+        </div>
+      `
+    };
+
+    const info = await emailTransporter.sendMail(mailOptions);
+    console.log('✅ Password reset email sent to:', toEmail);
+    console.log('📧 Preview URL:', nodemailer.getTestMessageUrl(info));
+  } catch (error) {
+    console.error('❌ Error sending reset email:', error.message);
+    throw error;
   }
 };
 
 module.exports = {
   sendApplicationConfirmation,
   sendApplicationNotification,
-  sendStatusUpdate
+  sendStatusUpdate,
+  sendPasswordResetEmail
 };

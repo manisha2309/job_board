@@ -70,6 +70,12 @@ const Login = () => {
                 onChange={handleChange}
                 required
               />
+              {/* Forgot password link */}
+              <div style={{ textAlign: 'right', marginTop: '6px' }}>
+                <Link to="/forgot-password" style={{ fontSize: '13px', color: '#667eea', textDecoration: 'none' }}>
+                  Forgot password?
+                </Link>
+              </div>
             </div>
 
             <button type="submit" className="btn btn-primary btn-full" disabled={loading}>

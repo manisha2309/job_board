@@ -1,5 +1,5 @@
 const config = {
-  API_URL: "https://job-board-backend-jtw0.onrender.com", // replace with your actual backend URL
+  API_URL: "http://localhost:5000",
 };
 
 export default config;

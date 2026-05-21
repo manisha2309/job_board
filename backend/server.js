@@ -1,3 +1,8 @@
+// ============================================================
+// FILE: backend/server.js  (UPDATED)
+// Added /api/analyze-resume route
+// ============================================================
+
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
@@ -26,6 +31,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/jobs', require('./routes/jobs'));
 app.use('/api/applications', require('./routes/applications'));
+app.use('/api/analyze-resume', require('./routes/analyzeResume')); // ← NEW
 
 app.get('/', (req, res) => {
   res.json({ message: 'Job Board API is running' });

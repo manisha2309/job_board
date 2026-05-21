@@ -327,3 +327,225 @@
     width: 100%;
   }
 }
+
+/* ============================================================
+   ADD THESE STYLES to your existing Dashboard.css
+   (paste at the bottom of the file)
+   ============================================================ */
+
+/* ── AI Analyze Button ────────────────────────────────────── */
+.btn-ai {
+  background: linear-gradient(135deg, #6f42c1, #8e44ad);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.1s;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+}
+.btn-ai:hover:not(:disabled) {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+.btn-ai:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ── Footer actions row ──────────────────────────────────── */
+.footer-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* ── AI score preview on card ────────────────────────────── */
+.ai-score-preview {
+  font-size: 0.82rem;
+  color: #555;
+  margin: 6px 0 2px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.ai-rec-mini {
+  color: #888;
+  font-style: italic;
+}
+
+/* ── Modal overlay ───────────────────────────────────────── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+}
+
+/* ── Modal box ───────────────────────────────────────────── */
+.modal-box.ai-modal {
+  background: #fff;
+  border-radius: 16px;
+  padding: 32px;
+  max-width: 760px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  animation: modalIn 0.25s ease;
+}
+
+@keyframes modalIn {
+  from { transform: translateY(24px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+  color: #888;
+  line-height: 1;
+}
+.modal-close:hover { color: #333; }
+
+/* ── Modal header ────────────────────────────────────────── */
+.ai-modal-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+.ai-icon {
+  font-size: 2.4rem;
+  line-height: 1;
+}
+.ai-modal-header h2 {
+  margin: 0;
+  font-size: 1.4rem;
+  color: #1a1a2e;
+}
+.ai-subtitle {
+  margin: 2px 0 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* ── Score ring section ──────────────────────────────────── */
+.score-section {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  background: #f8f9fb;
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 24px;
+}
+.score-ring {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 80px;
+  padding: 16px;
+  border: 4px solid var(--score-color, #ccc);
+  border-radius: 50%;
+  width: 96px;
+  height: 96px;
+  justify-content: center;
+}
+.score-number {
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.score-label {
+  font-size: 0.7rem;
+  color: #999;
+}
+.score-meta {
+  flex: 1;
+}
+.recommendation-badge {
+  display: inline-block;
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.ai-summary {
+  color: #444;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ── 2-column grid ───────────────────────────────────────── */
+.ai-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+/* ── Info cards ──────────────────────────────────────────── */
+.ai-card {
+  background: #f8f9fb;
+  border-radius: 10px;
+  padding: 16px;
+}
+.ai-card h4 {
+  margin: 0 0 10px;
+  font-size: 0.95rem;
+  color: #1a1a2e;
+}
+.ai-card ul,
+.ai-card ol {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 0.87rem;
+  color: #444;
+  line-height: 1.7;
+}
+.ai-card.full-width {
+  grid-column: 1 / -1;
+}
+
+/* ── Keyword tags ────────────────────────────────────────── */
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.tag {
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+.tag-green {
+  background: #d4edda;
+  color: #155724;
+}
+.tag-red {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .ai-grid { grid-template-columns: 1fr; }
+  .score-section { flex-direction: column; text-align: center; }
+  .modal-box.ai-modal { padding: 20px 16px; }
+}

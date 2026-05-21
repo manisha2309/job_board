@@ -12,6 +12,8 @@ import PostJob from './pages/PostJob';
 import EmployerDashboard from './pages/EmployerDashboard';
 import CandidateDashboard from './pages/CandidateDashboard';
 import Profile from './pages/Profile';
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
 import './App.css';
 
 function App() {
@@ -26,6 +28,8 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/jobs" element={<JobListings />} />
             <Route path="/jobs/:id" element={<JobDetail />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/reset-password/:token" element={<ResetPassword />} />
             
             <Route 
               path="/post-job" 
